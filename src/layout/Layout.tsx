@@ -15,7 +15,10 @@ const Layout: React.FC = () => {
 
                     <Navbar />
                 </Box>
-                <Box>
+                <Box sx={{
+                    backgroundColor: "rgba(1, 1, 1, 0.1)",
+                    minHeight: '90dvh'
+                }}>
                     <Container sx={{
                         padding: '10px'
                     }
