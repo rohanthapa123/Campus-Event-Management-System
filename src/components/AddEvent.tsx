@@ -5,12 +5,12 @@ import { NavLink } from 'react-router-dom'
 const AddEvent: React.FC = () => {
     return (
         <Box sx={{
-            height: "100%",
-            width: "100%",
+            height: "98%",
+            width: "98%",
             backgroundColor: "rgba(1, 1, 1, 0.15)",
             borderRadius: "10px",
             margin: '5px',
-            padding: '5px',
+            padding: '0px',
             minHeight: '250px',
         }}>
             <Box sx={{

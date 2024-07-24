@@ -7,6 +7,11 @@ const Layout: React.FC = () => {
     return (
         <Box sx={{
             minHeight: '100dvh',
+            scrollbarWidth: "none", // For Firefox
+            '&::-webkit-scrollbar': {
+                display: 'none', // For WebKit-based browsers
+            },
+            msOverflowStyle: 'none', // For Internet Explorer and Edge
 
         }}>
             <>
@@ -17,7 +22,8 @@ const Layout: React.FC = () => {
                 </Box>
                 <Box sx={{
                     backgroundColor: "rgba(1, 1, 1, 0.1)",
-                    minHeight: '90dvh'
+                    minHeight: '90dvh',
+
                 }}>
                     <Container sx={{
                         padding: '10px'

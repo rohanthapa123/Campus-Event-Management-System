@@ -44,7 +44,8 @@ const Landing: React.FC = () => {
     <Box sx={{
       minHeight: "80dvh",
       width: "100%",
-      margin: "auto"
+      margin: "auto",
+      
     }}>
       <Grid container spacing={2} sx={{
         margin: "auto",
