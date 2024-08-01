@@ -7,6 +7,7 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import { alpha, AppBar, Badge, Box, Container, IconButton, InputBase, Menu, MenuItem, styled, Toolbar, Typography } from '@mui/material';
 import React from 'react'
 import { NavLink } from 'react-router-dom';
+import { socket } from '../socket';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -48,10 +49,26 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 const Navbar: React.FC = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
+
+
+  const [notificationCount, setNotficationCount] = React.useState<number>(0);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -147,6 +164,25 @@ const Navbar: React.FC = () => {
     </Menu>
   );
 
+
+
+
+
+  React.useEffect(() => {
+    const handleNewNotification = () => {
+      setNotficationCount((prevCount) => prevCount + 1);
+      // Optionally, you can fetch the updated event data or modify the state directly
+    };
+
+    socket.on('new-notification', handleNewNotification);
+
+    return () => {
+      socket.off('new-notification', handleNewNotification);
+    };
+  }, []);
+
+
+
   return (
 
     <Box sx={{ flexGrow: 1 }} >
@@ -207,7 +243,7 @@ const Navbar: React.FC = () => {
                 aria-label="show 17 new notifications"
                 color="inherit"
               >
-                <Badge badgeContent={17} color="error">
+                <Badge badgeContent={notificationCount} color="error">
                   <NotificationsIcon />
                 </Badge>
               </IconButton>

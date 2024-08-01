@@ -3,7 +3,8 @@ import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import React from 'react'
 import { dataType } from './Landing'
-import { useParams } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 const ViewEvent: React.FC = () => {
 
@@ -33,16 +34,23 @@ const ViewEvent: React.FC = () => {
       flexDirection: 'column',
       justifyContent: 'center'
     }}>
-      
+      <Typography>
+        <NavLink to={"/home"}>
+
+          <IoMdArrowRoundBack size={50} />
+        </NavLink>
+
+
+      </Typography>
       <Typography sx={{
         color: "rgba(0,0,0,0.5)"
-      }} variant='h5'>Start Date: { eventData?.['start-date'].toString().slice(0,10)}</Typography>
+      }} variant='h5'>Start Date: {eventData?.['start-date'].toString().slice(0, 10)}</Typography>
       <Typography sx={{
         color: "rgba(0,0,0,0.5)"
-      }}  variant='h5'>Dead Line: { eventData?.['dead-line'].toString().slice(0,10)}</Typography>
-      <Typography variant='h4'>Event Name: { eventData?.['event-name']}</Typography>
-      <Typography variant='h6'>Event Task: { eventData?.['event-task']}</Typography>
-      <Typography variant='h5'>Priority: { eventData?.priority}</Typography>
+      }} variant='h5'>Dead Line: {eventData?.['dead-line'].toString().slice(0, 10)}</Typography>
+      <Typography variant='h4'>Event Name: {eventData?.['event-name']}</Typography>
+      <Typography variant='h6'>Event Task: {eventData?.['event-task']}</Typography>
+      <Typography variant='h5'>Priority: {eventData?.priority}</Typography>
       {
         eventData?.status ? <Button sx={{
           width: 'fit-content',
@@ -51,7 +59,7 @@ const ViewEvent: React.FC = () => {
           width: 'fit-content',
           marginTop: '10px',
           color: "red",
-          
+
         }} variant='contained' disabled>Event Completed</Button>
       }
 

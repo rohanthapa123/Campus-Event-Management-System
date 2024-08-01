@@ -4,6 +4,7 @@ import axios from 'axios';
 import React from 'react';
 import AddEvent from '../components/AddEvent';
 import CardComponent from '../components/CardComponent';
+import SkeletonComponent from '../components/Skeleton';
 
 export interface dataType {
   createdAt: Date;
@@ -30,15 +31,34 @@ const Landing: React.FC = () => {
     }
   })
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   if (error) {
     return <Typography variant='h1'>ERROR GETTING EVENTS DATA</Typography>
   }
 
 
   if (isLoading) {
-    return <Typography sx={{ textAlign: "center" }} variant='h1'>Loading...</Typography>
+    return <SkeletonComponent />
   }
 
+  
 
   return (
     <Box sx={{
