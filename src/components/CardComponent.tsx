@@ -1,9 +1,11 @@
 import { Box, Button, CardActions, CardContent, Typography } from '@mui/material'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
-import React from 'react'
+import React, { useRef } from 'react'
 import { NavLink } from 'react-router-dom'
 import { dataType } from '../Pages/Landing'
+
+import { useInView } from "framer-motion"
 
 interface CardComponentProps {
     item: dataType
@@ -23,17 +25,21 @@ const CardComponent: React.FC<CardComponentProps> = ({ item }) => {
             queryClient.invalidateQueries({ queryKey: ['event-data'] })
         }
     })
-
+    const ref = useRef(null)
+    const isInView = useInView(ref, { once: true })
 
 
     return (
         <React.Fragment>
-            <Box sx={{
+            <Box ref={ref} sx={{
                 backgroundColor: "rgba(1, 1, 1, 0.15)",
                 borderRadius: "10px",
                 margin: '5px',
                 padding: '5px',
                 minHeight: '250px',
+                transform: isInView ? "none" : "translateY(200px)",
+                opacity: isInView ? 1 : 0,
+                transition: "all 0.9s ease-in-out"
             }}>
                 <CardContent>
                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
